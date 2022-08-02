@@ -14,17 +14,16 @@ characterAmountNumber.value = value
 
 
 
-const form = document.getElementById('generatePassword')
+const form = document.getElementById("generatePassword")
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(characterAmount, includeUppercase, includeNum, includeSym);
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  var password = generatePassword(characterAmountNumber, includeUppercase, includeNum, includeSym);
+  var passwordText = document.querySelector("passwordPlaceHolder");
+  
+console.log(includeUppercase)
 }
 
 
@@ -42,11 +41,12 @@ generateBtn.addEventListener("click", writePassword);
 
 const includeNum = document.getElementById('includeNum')
 const includeSym = document.getElementById('includeSym')
-const includeUppercase = document.getElementById('upperCase')
-const characterAmount = document.getElementById('characterAmountNumber')
-const generatedPassword = document.getElementById('Generated Password')
-const characterRange = document.getElementById('characterAmountRange')
-const passwordDisplay = document.getElementById('passwordDisplay')
+const includeUppercase = document.getElementById('includeUppercase')
+// const characterAmount = document.getElementById('characterAmountNumber')
+// const characterRange = document.getElementById('characterAmountRange')
+const generatedPassword = document.getElementById('generatedPassword')
+
+const passwordDisplay = document.getElementById('passwordPlaceHolder')
 
 const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65,90)
 const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97,122)
@@ -60,28 +60,33 @@ const SYM_CHAR_CODES = arrayFromLowToHigh(33,74)
   arrayFromLowToHigh(123, 126)
 )
 
-function generatePassword(characterAmount, includeNum, includeSym, includeUppercase) {
+function generatePassword(characterAmountNumber) {
+  
 let charCodes = LOWERCASE_CHAR_CODES
-  if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
-  if (includeNum) charCodes = charCodes.concat(NUM_CHAR_CODES)
-  if (includeSym) charCodes = charCodes.concat(SYM_CHAR_CODES)
-
+  if (includeUppercase.checked) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
+  if (includeNum.checked) charCodes = charCodes.concat(NUM_CHAR_CODES)
+  if (includeSym.checked) charCodes = charCodes.concat(SYM_CHAR_CODES)
 
   const passwordCharacters = []
-  for (let i = 0; i < characterAmount; i++) {
-const characterCode = charCodes[Math.floor(Math.random() * characterAmount)]
+  for (let i = 0; i < characterAmountNumber; i++) {
+const characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
 passwordCharacters.push(String.fromCharCode(characterCode))
   }
+  console.log(passwordCharacters)
  return passwordCharacters.join('')
-console.log(passwordCharacters)
+
 }
+
+const includeNumElement = document.querySelector("#includeNum")
+const includeSymElement = document.querySelector("#includeSym")
+const includeUppercaseElement = document.querySelector("#includeUppercase")
 
 form.addEventListener('submit', e => {
   e.preventDefault()
   const characterAmount = characterAmountNumber.value
-  const includeNum = includeNumElement.checked
-  const includeSym = includeSymElement.checked
-  const includeUppercase = includeUppercaseElement.checked
+  const includeNum = includeNumElement
+  const includeSym = includeSymElement
+  const includeUppercase = includeUppercaseElement
   const password = generatePassword(characterAmount, includeNum, includeUppercase, includeSym)
 passwordDisplay.innerText = password
 })
