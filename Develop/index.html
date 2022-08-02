@@ -17,33 +17,28 @@
         <div class="card-header">
           <h2>Generate a Password</h2>
           <div class="form">
-        <label for="">Number of Characters</label>
-          <div class="character-amount">
-            <input type="range" min="1" max="128" value="10" id="CharacterRange">
-        <input class="input" type="number"min="1" max="128" value = "8" id="CharacterAmount" style="margin-left:1.5rem;">
-        
-      </div>
+        <label for="characterAmountNumber">Number of Characters</label>
+        <div>?</div>
+            <input type="range" min="8" max="64" value="16" id="characterAmountRange">
+        <input class="input" type="number" min="8" max="64" value = "16" id="characterAmountNumber" style="float: right;">
        
-        <label for="">Include Uppercase</label>
+        <label for="includeUppercase">Include Uppercase</label>
         <input type="checkbox" id="includeUppercase">
 
-        <label for="">Include Numbers</label>
-        <input type="checkbox" id="includeNumbers">
+        <label for="includeNum">Include Numbers</label>
+        <input type="checkbox" id="includeNum">
 
-        <label for="">Include Symbol</label>
-        <input type="checkbox" id="includeSymbols">
+        <label for="includeSym">Include Symbol</label>
+        <input type="checkbox" id="includeSym">
+          </form>
       </div>
-
-
-      
-
 
         <div class="card-body">
           <textarea
             readonly
-            id="password"
+            id="passwordPlaceHolder"
             placeholder="Your Secure Password"
-            aria-label="Generated Password"
+            aria-label="generatePassword"
           ></textarea>
         </div>
         <div class="card-footer">
